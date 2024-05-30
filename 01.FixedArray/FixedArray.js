@@ -103,10 +103,23 @@ class FixedArray {
   //////      LEVEL 3      /////
   //////////////////////////////
   // 배열의 각 요소에 대해 제공된 함수를 한 번씩 실행합니다.
-  forEach(callback) {}
+  forEach(callback) {
+    for (let i = 0; i < this.getLength(); i++) {
+      callback(this.#array[i]);
+    }
+  }
 
   // 배열의 각 요소에 대해 predicate 결과가 true인 요소를 모아 새로운 배열 반환
-  filter(predicate) {}
+  filter(predicate) {
+    const length = this.getLength();
+    const filteredArray = new FixedArray(length);
+
+    for (let i = 0; i < length; i++) {
+      if (predicate(this.#array[i])) filteredArray.push(this.#array[i]);
+    }
+
+    return filteredArray;
+  }
 
   // 배열의 각 요소에 대해 callback 함수를 호출한 결과를 모아 새로운 배열로 반환
   map(callback) {}
@@ -128,3 +141,6 @@ console.log(arr.indexOf(1));
 console.log(arr.find((element) => element > 2));
 console.log(arr.findIndex((element) => element > 2));
 console.log(arr.includes(0));
+arr.forEach((e) => console.log(e));
+
+console.log(arr.filter((e) => e !== 1).stringify());
