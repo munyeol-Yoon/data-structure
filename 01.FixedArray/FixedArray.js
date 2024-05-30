@@ -78,7 +78,12 @@ class FixedArray {
 
   // 배열의 각 요소에 대해 predicate 결과가 true인 요소 중 제일 첫번째 요소 1개만 반환
   // true 가 없으면 null 반환
-  find(predicate) {}
+  find(predicate) {
+    for (let i = 0; i < this.getLength(); i++) {
+      if (predicate(this.#array[i])) return this.#array[i];
+    }
+    return null;
+  }
 
   // 배열의 각 요소에 대해 predicate 결과가 true인 요소 중 제일 첫번째 요소의 index반환
   // true 가 없으면 -1 반환
@@ -112,3 +117,5 @@ arr.push(4);
 
 console.log(arr.stringify());
 console.log(arr.indexOf(1));
+
+console.log(arr.find((element) => element > 2));
