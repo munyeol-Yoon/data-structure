@@ -64,7 +64,17 @@ class FixedArray {
   //////      LEVEL 2      /////
   //////////////////////////////
   // 배열에서 특정 요소의 첫 번째 인덱스를 반환합니다. 요소가 없으면 -1을 반환합니다.
-  indexOf(searchElement) {}
+  indexOf(searchElement) {
+    const arr = this.#array;
+    let result = -1;
+    for (let i = 0; i < this.getLength(); i++) {
+      if (searchElement === arr[i]) {
+        result = i;
+        return result;
+      }
+    }
+    return result;
+  }
 
   // 배열의 각 요소에 대해 predicate 결과가 true인 요소 중 제일 첫번째 요소 1개만 반환
   // true 가 없으면 null 반환
@@ -94,3 +104,11 @@ class FixedArray {
 }
 
 const arr = new FixedArray(5);
+
+arr.push(1);
+arr.push(2);
+arr.push(3);
+arr.push(4);
+
+console.log(arr.stringify());
+console.log(arr.indexOf(1));
