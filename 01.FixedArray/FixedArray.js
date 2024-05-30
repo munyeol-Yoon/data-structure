@@ -87,7 +87,12 @@ class FixedArray {
 
   // 배열의 각 요소에 대해 predicate 결과가 true인 요소 중 제일 첫번째 요소의 index반환
   // true 가 없으면 -1 반환
-  findIndex(predicate) {}
+  findIndex(predicate) {
+    for (let i = 0; i < this.getLength(); i++) {
+      if (predicate(this.#array[i])) return i;
+    }
+    return -1;
+  }
 
   // 배열에 특정 요소가 포함되어 있는지 여부를 확인합니다. (true or false)
   includes(searchElement) {}
@@ -119,3 +124,4 @@ console.log(arr.stringify());
 console.log(arr.indexOf(1));
 
 console.log(arr.find((element) => element > 2));
+console.log(arr.findIndex((element) => element > 2));
