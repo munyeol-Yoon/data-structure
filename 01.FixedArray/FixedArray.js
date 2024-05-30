@@ -122,10 +122,27 @@ class FixedArray {
   }
 
   // 배열의 각 요소에 대해 callback 함수를 호출한 결과를 모아 새로운 배열로 반환
-  map(callback) {}
+  map(callback) {
+    const length = this.getLength();
+    const mapArray = new FixedArray(length);
+
+    for (let i = 0; i < length; i++) {
+      mapArray.push(callback(this.#array[i]));
+    }
+    return mapArray;
+  }
 
   // 배열의 각 요소에 대해 제공된 함수를 호출하여 누산기에 값을 축적
-  reduce(callback, initValue) {}
+  reduce(callback, initValue) {
+    const length = this.getLength();
+    let acc = initValue;
+
+    for (let i = 0; i < length; i++) {
+      acc = callback(acc, this.#array[i]);
+    }
+
+    return acc;
+  }
 }
 
 const arr = new FixedArray(5);
@@ -144,3 +161,6 @@ console.log(arr.includes(0));
 arr.forEach((e) => console.log(e));
 
 console.log(arr.filter((e) => e !== 1).stringify());
+console.log(arr.map((e) => e * 2).stringify());
+
+console.log(arr.reduce((a, c) => a + c, 0));
