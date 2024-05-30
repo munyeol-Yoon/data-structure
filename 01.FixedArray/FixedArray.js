@@ -95,7 +95,9 @@ class FixedArray {
   }
 
   // 배열에 특정 요소가 포함되어 있는지 여부를 확인합니다. (true or false)
-  includes(searchElement) {}
+  includes(searchElement) {
+    return this.indexOf(searchElement) !== -1;
+  }
 
   //////////////////////////////
   //////      LEVEL 3      /////
@@ -125,3 +127,4 @@ console.log(arr.indexOf(1));
 
 console.log(arr.find((element) => element > 2));
 console.log(arr.findIndex((element) => element > 2));
+console.log(arr.includes(0));
